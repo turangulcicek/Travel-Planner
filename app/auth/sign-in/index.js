@@ -4,7 +4,13 @@ import { useNavigation } from "expo-router";
 import { Colors } from "./../../../constants/Colors.ts";
 import CustomTextInput from "../../../components/CustomTextInput.jsx";
 import CustomButton from "../../../components/CustomButton.jsx";
+import { useRouter } from "expo-router";
+
 export default function SignIn() {
+  const router = useRouter();
+  const handleClick = () => {
+    router.replace("auth/sign-up");
+  };
   const navigation = useNavigation();
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -35,7 +41,7 @@ export default function SignIn() {
         <CustomButton color="black" setWidth="100%">
           Sign In
         </CustomButton>
-        <CustomButton color="orange" setWidth="100%">
+        <CustomButton color="orange" setWidth="100%" handlePress={handleClick}>
           Create an Account
         </CustomButton>
       </View>
@@ -62,6 +68,6 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     gap: 10,
-    marginTop: 10,
+    marginTop: 30,
   },
 });

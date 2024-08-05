@@ -25,7 +25,7 @@ export default function Login() {
           Travel smarter with AI-driven insights
         </Text>
         <CustomButton handlePress={handleClick} color="black" setWidth="75%">
-          Sign in With Google
+          Get Started
         </CustomButton>
       </View>
     </View>
