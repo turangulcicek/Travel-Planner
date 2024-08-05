@@ -9,9 +9,8 @@ export default function CustomButton({
 }) {
   return (
     <Pressable
-      android_ripple={{ color: "black", borderless: true }}
       onPress={handlePress}
-      style={{ alignItems: "center", justifyContent: "center" }}
+      style={({ pressed }) => [styles.buttonWrapper, pressed && styles.pressed]}
     >
       <View
         style={{
@@ -36,4 +35,12 @@ export default function CustomButton({
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  buttonWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  pressed: {
+    opacity: 0.75,
+  },
+});
