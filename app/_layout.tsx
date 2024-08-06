@@ -12,10 +12,11 @@ export default function RootLayout() {
   });
   return (
     <Stack /* screenOptions={{ headerStyle: { backgroundColor: "white" } }} */>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="index"
         options={{ title: "Plan your travel", headerShown: false }}
-      />
+      /> */}
+      <Stack.Screen name="(tabs)" />
     </Stack>
   );
 }

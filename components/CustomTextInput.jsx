@@ -1,10 +1,11 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 import React from "react";
 
 export default function CustomTextInput({
   InputPlaceHolder,
   capitalize,
   secureText,
+  handleText,
 }) {
   return (
     <TextInput
@@ -12,6 +13,7 @@ export default function CustomTextInput({
       style={styles.textInput}
       autoCapitalize={capitalize}
       secureTextEntry={secureText}
+      onChangeText={(text) => handleText(text)}
     />
   );
 }

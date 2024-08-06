@@ -1,18 +1,58 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  ToastAndroid,
+  Alert,
+} from "react-native";
+import React, { useEffect, useState } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import CustomTextInput from "../../../components/CustomTextInput";
 import CustomButton from "../../../components/CustomButton";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { auth } from "./../../../configs/FirebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function SignUp() {
   const navigation = useNavigation();
   const router = useRouter();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [fullName, setFullName] = useState();
+
+  const onCreateAccount = () => {
+    if (!password || !email || !fullName) {
+      ToastAndroid.show("please fill all sections", ToastAndroid.BOTTOM);
+      return;
+    }
+    if (!email.includes("@")) {
+      ToastAndroid.show("Please enter a valid email", ToastAndroid.TOP);
+      return;
+    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage, errorCode);
+        // ..
+      });
+  };
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, []);
   return (
     <View style={styles.container}>
+      <Pressable style={{ marginVertical: 10 }} onPress={() => router.back()}>
+        <Ionicons name="arrow-back" size={24} color="black" />
+      </Pressable>
       <Text style={styles.text}>Create an Account</Text>
       <View style={styles.inputArea}>
         {/* Full name */}
@@ -21,6 +61,7 @@ export default function SignUp() {
           InputPlaceHolder="Enter Your Full Name"
           capitalize="none"
           secureText={false}
+          handleText={setFullName}
         />
         {/* email */}
         <Text>Email</Text>
@@ -28,6 +69,7 @@ export default function SignUp() {
           InputPlaceHolder="Enter Your Email"
           capitalize="none"
           secureText={false}
+          handleText={setEmail}
         />
         {/* password */}
         <Text>Password</Text>
@@ -35,12 +77,17 @@ export default function SignUp() {
           InputPlaceHolder="Enter Your Password"
           capitalize="null"
           secureText={true}
+          handleText={setPassword}
         />
       </View>
       {/* Input Area ends */}
       {/* Button Area starts */}
       <View style={styles.buttonWrapper}>
-        <CustomButton color="black" setWidth="100%">
+        <CustomButton
+          color="black"
+          setWidth="100%"
+          handlePress={onCreateAccount}
+        >
           Create Account
         </CustomButton>
         <CustomButton
