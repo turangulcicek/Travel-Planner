@@ -25,7 +25,7 @@ export default function TabLayout() {
         options={{
           tabBarLabel: "Discover",
           tabBarIcon: ({ color }) => (
-            <Ionicons name="search" size={24} color={color} />
+            <Ionicons name="globe" size={24} color={color} />
           ),
         }}
       />
