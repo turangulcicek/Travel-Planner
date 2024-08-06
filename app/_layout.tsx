@@ -11,7 +11,10 @@ export default function RootLayout() {
     "roboto-bold": require("./../assets/fonts/RobotoCondensed-Bold.ttf"),
   });
   return (
-    <Stack /* screenOptions={{ headerStyle: { backgroundColor: "white" } }} */>
+    <Stack
+      screenOptions={{ headerShown: false }}
+      /* screenOptions={{ headerStyle: { backgroundColor: "white" } }} */
+    >
       {/* <Stack.Screen
         name="index"
         options={{ title: "Plan your travel", headerShown: false }}
