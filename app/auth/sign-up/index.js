@@ -30,6 +30,13 @@ export default function SignUp() {
       ToastAndroid.show("Please enter a valid email", ToastAndroid.TOP);
       return;
     }
+    if (password.length < 6) {
+      ToastAndroid.show(
+        "Password must be at least 6 characters",
+        ToastAndroid.BOTTOM
+      );
+      return;
+    }
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up
@@ -63,7 +70,7 @@ export default function SignUp() {
           InputPlaceHolder="Enter Your Full Name"
           capitalize="none"
           secureText={false}
-          handleText={setFullName}
+          handleText={(value) => setFullName(value.trim())}
         />
         {/* email */}
         <Text>Email</Text>
@@ -71,7 +78,7 @@ export default function SignUp() {
           InputPlaceHolder="Enter Your Email"
           capitalize="none"
           secureText={false}
-          handleText={setEmail}
+          handleText={(value) => setEmail(value.trim())}
         />
         {/* password */}
         <Text>Password</Text>
@@ -79,7 +86,7 @@ export default function SignUp() {
           InputPlaceHolder="Enter Your Password"
           capitalize="null"
           secureText={true}
-          handleText={setPassword}
+          handleText={(value) => setPassword(value.trim())}
         />
       </View>
       {/* Input Area ends */}

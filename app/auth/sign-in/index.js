@@ -32,7 +32,7 @@ export default function SignIn() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+
         router.replace("/mytrip");
 
         // ...
@@ -41,6 +41,9 @@ export default function SignIn() {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage, errorCode);
+        if (errorCode === "auth/invalid-credential") {
+          ToastAndroid.show("Invalid Credentials", ToastAndroid.BOTTOM);
+        }
       });
   };
   return (
@@ -58,14 +61,14 @@ export default function SignIn() {
           InputPlaceHolder="Enter Your Email"
           capitalize="none"
           secureText={false}
-          handleText={setEmail}
+          handleText={(value) => setEmail(value.trim())}
         />
         <Text>Password</Text>
         <CustomTextInput
           InputPlaceHolder="Enter Your Password"
           capitalize="null"
           secureText={true}
-          handleText={setPassword}
+          handleText={(value) => setPassword(value.trim())}
         />
       </View>
       {/* Input Area ends */}

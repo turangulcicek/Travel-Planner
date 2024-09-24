@@ -20,7 +20,10 @@ export default function SearchPlace() {
         placeholder="Search"
         onPress={(data, details = null) => {
           // 'details' is provided when fetchDetails = true
-          console.log(data, details);
+          console.log(data.description);
+          console.log(details?.geometry.location);
+          console.log(details?.photos[0]?.photo_reference);
+          console.log(details?.url);
         }}
         query={{
           key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
