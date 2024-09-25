@@ -21,15 +21,11 @@ export default function SelectTraveler() {
       <View>
         <Text style={styles.subTitle}>Choose your travelers</Text>
       </View>
-      <View>
-        {SelectTravelerList.map((item, index) => {
-          return (
-            <View key={index}>
-              <OptionCard option={item} />
-            </View>
-          );
-        })}
-      </View>
+
+      <FlatList
+        data={SelectTravelerList}
+        renderItem={({ item }) => <OptionCard option={item} />}
+      />
     </View>
   );
 }
@@ -38,7 +34,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 70,
-    alignItems: "center",
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 26,
