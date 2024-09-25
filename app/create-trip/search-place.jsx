@@ -3,8 +3,10 @@ import React, { useEffect } from "react";
 import CustomButton from "../../components/CustomButton";
 import { useNavigation } from "expo-router";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-
+import { CreateTripContext } from "../../context/CreateTripContext";
+import { useContext } from "react";
 export default function SearchPlace() {
+  const { TripData, setTripData } = useContext(CreateTripContext);
   const navigation = useNavigation();
   useEffect(() => {
     navigation.setOptions({
@@ -13,17 +15,28 @@ export default function SearchPlace() {
       headerTransparent: true,
     });
   }, []);
+  useEffect(() => {
+    console.log(TripData);
+  }, [TripData]);
   return (
     <View style={styles.container}>
       <GooglePlacesAutocomplete
         fetchDetails={true}
-        placeholder="Search"
+        placeholder="Search Place"
         onPress={(data, details = null) => {
           // 'details' is provided when fetchDetails = true
-          console.log(data.description);
-          console.log(details?.geometry.location);
-          console.log(details?.photos[0]?.photo_reference);
-          console.log(details?.url);
+          // console.log(data.description);
+          // console.log(details?.geometry.location);
+          // console.log(details?.photos[0]?.photo_reference);
+          // console.log(details?.url);
+          setTripData({
+            locationInfo: {
+              name: data.description,
+              coordinates: details?.geometry.location,
+              photo_reference: details?.photos[0]?.photo_reference,
+              url: details?.url,
+            },
+          });
         }}
         query={{
           key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
