@@ -1,11 +1,16 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
-import React, { useEffect } from "react";
-import { useNavigation } from "expo-router";
+import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigation, useRouter } from "expo-router";
 import { SelectTravelerList } from "../../constants/Options";
+import { CreateTripContext } from "../../context/CreateTripContext";
 import OptionCard from "../../components/CreateTrip/OptionCard";
+import CustomButton from "../../components/CustomButton";
 
 export default function SelectTraveler() {
   const navigation = useNavigation();
+  const [selectedTravelers, setSelectedTravelers] = useState();
+  const { TripData, setTripData } = useContext(CreateTripContext);
+  const router = useRouter();
 
   useEffect(() => {
     navigation.setOptions({
@@ -13,8 +18,18 @@ export default function SelectTraveler() {
       headerTitle: "",
       headerTransparent: true,
     });
-    console.log(SelectTravelerList);
   }, []);
+  useEffect(() => {
+    setTripData({
+      ...TripData,
+      travelerCount: selectedTravelers?.people,
+    });
+  }, [selectedTravelers]);
+
+  useEffect(() => {
+    console.log(TripData);
+  }, [TripData]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Who goes with you?</Text>
@@ -24,8 +39,21 @@ export default function SelectTraveler() {
 
       <FlatList
         data={SelectTravelerList}
-        renderItem={({ item }) => <OptionCard option={item} />}
+        renderItem={({ item, index }) => (
+          <Pressable onPress={() => setSelectedTravelers(item)}>
+            <OptionCard option={item} selectedTravelers={selectedTravelers} />
+          </Pressable>
+        )}
       />
+      <View style={{ marginBottom: 30 }}>
+        <CustomButton
+          color="black"
+          setWidth="100%"
+          handlePress={() => router.push("/create-trip/select-dates")}
+        >
+          Continue
+        </CustomButton>
+      </View>
     </View>
   );
 }
