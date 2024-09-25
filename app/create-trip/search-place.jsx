@@ -5,9 +5,11 @@ import { useNavigation } from "expo-router";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { CreateTripContext } from "../../context/CreateTripContext";
 import { useContext } from "react";
+import { useRouter } from "expo-router";
 export default function SearchPlace() {
   const { TripData, setTripData } = useContext(CreateTripContext);
   const navigation = useNavigation();
+  const router = useRouter();
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -37,6 +39,7 @@ export default function SearchPlace() {
               url: details?.url,
             },
           });
+          router.push("/create-trip/select-traveler");
         }}
         query={{
           key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
