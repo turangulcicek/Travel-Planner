@@ -28,3 +28,23 @@ export const SelectTravelerList = [
     people: "4 to 10 people",
   },
 ];
+export const selectBudgetOptions = [
+  {
+    id: 1,
+    title: "Cheap ",
+    desc: "A budget-friendly trip",
+    icon: require("../assets/images/dollar-bill.png"),
+  },
+  {
+    id: 2,
+    title: "Moderate",
+    desc: "A moderate budget trip",
+    icon: require("../assets/images/dollar.png"),
+  },
+  {
+    id: 3,
+    title: "Expensive",
+    desc: "An expensive trip",
+    icon: require("../assets/images/cash.png"),
+  },
+];

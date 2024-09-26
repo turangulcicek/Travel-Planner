@@ -37,7 +37,7 @@ export default function SelectTraveler() {
         data={SelectTravelerList}
         renderItem={({ item, index }) => (
           <Pressable onPress={() => setSelectedTravelers(item)}>
-            <OptionCard option={item} selectedTravelers={selectedTravelers} />
+            <OptionCard option={item} selectedOption={selectedTravelers} />
           </Pressable>
         )}
       />

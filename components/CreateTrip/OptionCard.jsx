@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import Colors from "../../constants/Colors";
-export default function OptionCard({ option, selectedTravelers }) {
+export default function OptionCard({ option, selectedOption }) {
   return (
     <View
       style={[
         styles.container,
-        selectedTravelers?.id === option?.id && styles.selected,
+        selectedOption?.id === option?.id && styles.selected,
       ]}
     >
       <View style={styles.textContainer}>
