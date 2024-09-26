@@ -15,7 +15,7 @@ export default function SelectBudget() {
   }, []);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Choose your budget</Text>
+      <Text>Choose your budget for this lovely trip</Text>
     </View>
   );
 }
@@ -25,12 +25,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  title: {
-    fontSize: 24,
-    textAlign: "center",
-    fontWeight: 700,
-    marginTop: 20,
-    marginBottom: 20,
   },
 });

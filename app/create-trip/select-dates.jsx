@@ -41,7 +41,7 @@ export default function SelectDates() {
       endDate: endDate,
       totalDays: totalDays + 1,
     });
-    router.push("/create-trip/select-budget");
+    router.replace("/create-trip/select-budget");
   };
 
   return (
