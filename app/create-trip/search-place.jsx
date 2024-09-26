@@ -17,9 +17,7 @@ export default function SearchPlace() {
       headerTransparent: true,
     });
   }, []);
-  useEffect(() => {
-    console.log(TripData);
-  }, [TripData]);
+
   return (
     <View style={styles.container}>
       <GooglePlacesAutocomplete

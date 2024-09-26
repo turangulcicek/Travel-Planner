@@ -26,10 +26,6 @@ export default function SelectTraveler() {
     });
   }, [selectedTravelers]);
 
-  useEffect(() => {
-    console.log(TripData);
-  }, [TripData]);
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Who goes with you?</Text>
@@ -45,7 +41,7 @@ export default function SelectTraveler() {
           </Pressable>
         )}
       />
-      <View style={{ marginBottom: 30 }}>
+      <View style={{ marginBottom: 40 }}>
         <CustomButton
           color="black"
           setWidth="100%"

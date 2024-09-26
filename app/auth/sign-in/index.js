@@ -1,4 +1,11 @@
-import { Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  ToastAndroid,
+  View,
+  KeyboardAvoidingView,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "expo-router";
 import { Colors } from "./../../../constants/Colors.ts";
@@ -47,7 +54,7 @@ export default function SignIn() {
       });
   };
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <Pressable style={{ marginVertical: 10 }} onPress={() => router.back()}>
         <Ionicons name="arrow-back" size={24} color="black" />
       </Pressable>
@@ -82,7 +89,7 @@ export default function SignIn() {
         </CustomButton>
       </View>
       {/* Button Area ends */}
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
