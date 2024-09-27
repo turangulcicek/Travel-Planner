@@ -21,7 +21,9 @@ export default function CustomTextInput({
 const styles = StyleSheet.create({
   textInput: {
     borderWidth: 1,
-    padding: 5,
+    paddingVertical: 15,
+    textAlign: "left",
+    paddingHorizontal: 10,
     borderRadius: 5,
   },
 });

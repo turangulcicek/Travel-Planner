@@ -62,13 +62,14 @@ export default function SelectBudget() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderWidth: 1,
-    paddingTop: 80,
+    paddingTop: 150,
     paddingHorizontal: 40,
   },
   text: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
   },
-  header: {},
+  header: {
+    marginTop: 50,
+  },
 });

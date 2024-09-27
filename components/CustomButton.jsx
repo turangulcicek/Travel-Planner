@@ -16,7 +16,8 @@ export default function CustomButton({
         style={{
           backgroundColor: color,
           width: setWidth,
-          padding: 10,
+          paddingHorizontal: 10,
+          paddingVertical: 20,
           borderRadius: 10,
         }}
       >
@@ -25,7 +26,7 @@ export default function CustomButton({
             color: "white",
             textAlign: "center",
             fontWeight: "bold",
-            fontSize: 16,
+            fontSize: 20,
           }}
         >
           {children}

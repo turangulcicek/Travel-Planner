@@ -11,12 +11,12 @@ export default function StartNewTripCard() {
   };
   return (
     <View style={styles.container}>
-      <Ionicons name="location" size={30} color="black" />
+      <Ionicons name="location" size={50} color="black" />
       <Text style={styles.text}>No trips planned yet</Text>
       <Text style={styles.text}>
         Looks like its time to plan a new travel experience! Get Started below
       </Text>
-      <CustomButton color="black" handlePress={handleClick}>
+      <CustomButton color="black" handlePress={handleClick} setWidth={400}>
         Start a new trip
       </CustomButton>
     </View>
@@ -25,7 +25,7 @@ export default function StartNewTripCard() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 30,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     gap: 20,

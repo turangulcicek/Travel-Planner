@@ -56,8 +56,8 @@ export default function SelectTraveler() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 70,
+  flex: 1,
+    paddingTop: 150,
     paddingHorizontal: 20,
   },
   title: {

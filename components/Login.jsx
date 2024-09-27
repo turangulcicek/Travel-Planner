@@ -33,16 +33,19 @@ export default function Login() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+  },
   imagecontainer: {
     width: "100%",
-    height: "60%",
+    height: "50%",
   },
   image: {
     width: "100%",
     height: "100%",
   },
   title: {
-    fontSize: 25,
+    fontSize: 30,
     textAlign: "center",
     fontWeight: "bold",
   },
@@ -50,11 +53,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     height: "40%",
     borderTopLeftRadius: 40,
-    paddingVertical: 10,
+    paddingVertical: 30,
+    marginTop: 30,
   },
   text: {
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 24,
     padding: 14,
 
     color: Colors.gray,

@@ -55,7 +55,7 @@ export default function SignIn() {
   };
   return (
     <KeyboardAvoidingView style={styles.container}>
-      <Pressable style={{ marginVertical: 10 }} onPress={() => router.back()}>
+      <Pressable style={{ marginVertical: 20 }} onPress={() => router.back()}>
         <Ionicons name="arrow-back" size={24} color="black" />
       </Pressable>
       {/* Title */}
@@ -63,14 +63,14 @@ export default function SignIn() {
       <Text style={styles.text}>Welcome Back</Text>
       {/* Input Area */}
       <View style={styles.inputArea}>
-        <Text>Email</Text>
+        <Text style={{ fontSize: 24 }}>Email</Text>
         <CustomTextInput
           InputPlaceHolder="Enter Your Email"
           capitalize="none"
           secureText={false}
           handleText={(value) => setEmail(value.trim())}
         />
-        <Text>Password</Text>
+        <Text style={{ fontSize: 24 }}>Password</Text>
         <CustomTextInput
           InputPlaceHolder="Enter Your Password"
           capitalize="null"
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   buttonWrapper: {
-    gap: 10,
-    marginTop: 30,
+    gap: 20,
+    marginTop: 60,
   },
 });

@@ -32,6 +32,7 @@ export default function SelectDates() {
   const onDateSelect = () => {
     if (!startDate && !endDate) {
       alert("Please select dates");
+      return;
     }
     const totalDays = endDate?.diff(startDate, "days");
     // console.log(totalDays);
@@ -67,6 +68,6 @@ export default function SelectDates() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 100,
+    marginTop: 150,
   },
 });
