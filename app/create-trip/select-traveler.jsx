@@ -22,7 +22,7 @@ export default function SelectTraveler() {
   useEffect(() => {
     setTripData({
       ...TripData,
-      travelerCount: selectedTravelers?.people,
+      travelerCount: selectedTravelers?.title,
     });
   }, [selectedTravelers]);
 
