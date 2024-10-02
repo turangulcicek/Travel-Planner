@@ -5,6 +5,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { CreateTripContext } from "../../context/CreateTripContext";
 import moment from "moment";
 import CustomButton from "../../components/CustomButton";
+import { router } from "expo-router";
 
 export default function ReviewTrip() {
   const navigation = useNavigation();
@@ -18,6 +19,7 @@ export default function ReviewTrip() {
     });
     console.log(TripData);
   }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
@@ -108,7 +110,11 @@ export default function ReviewTrip() {
         </View>
       </View>
       <View style={{ marginTop: 40 }}>
-        <CustomButton setWidth="100%" color="black" handlePress={() => {}}>
+        <CustomButton
+          setWidth="100%"
+          color="black"
+          handlePress={() => router.replace("/create-trip/generate-trip")}
+        >
           Plan my trip!
         </CustomButton>
       </View>
@@ -119,7 +125,7 @@ export default function ReviewTrip() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 80,
+    paddingTop: 70,
     paddingHorizontal: 40,
   },
   title: {

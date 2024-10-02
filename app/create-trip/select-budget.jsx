@@ -1,15 +1,14 @@
 import { StyleSheet, Text, View, FlatList, Pressable } from "react-native";
 import React from "react";
-import { useNavigation, useRouter } from "expo-router";
+import { useNavigation } from "expo-router";
 import { useEffect, useState, useContext } from "react";
 import { selectBudgetOptions } from "../../constants/Options";
 import OptionCard from "../../components/CreateTrip/OptionCard";
 import { CreateTripContext } from "../../context/CreateTripContext";
 import CustomButton from "../../components/CustomButton";
-
+import { router } from "expo-router";
 export default function SelectBudget() {
   const navigation = useNavigation();
-  const router = useRouter();
   const [selectedOption, setSelectedOption] = useState();
   const { TripData, setTripData } = useContext(CreateTripContext);
 
