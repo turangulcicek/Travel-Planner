@@ -1,15 +1,22 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CreateTripContext } from "../../context/CreateTripContext";
 import { AI_PROMPT } from "../../constants/Options";
 import { chatSession } from "../../configs/AiModal";
+import { useRouter } from "expo-router";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../../configs/FirebaseConfig";
+
 export default function GenerateTrip() {
   const { TripData, setTripData } = useContext(CreateTripContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     TripData && GenerateAiTrip();
   }, [TripData]);
 
   const GenerateAiTrip = async () => {
+    setIsLoading(true);
     const FINAL_PROMPT = AI_PROMPT.replace(
       "{location}",
       TripData?.locationInfo?.name
@@ -20,8 +27,16 @@ export default function GenerateTrip() {
       .replace("{budget}", TripData?.budget)
       .replace("{totalDays}", TripData?.totalDays)
       .replace("{totalNight}", TripData?.totalDays - 1);
-    const result = await chatSession.sendMessage(FINAL_PROMPT);
-    console.log(result.response.text());
+    // const result = await chatSession.sendMessage(FINAL_PROMPT);
+    // console.log(result.response.text());
+    setIsLoading(false);
+    // router.push("(tabs)/mytrip");
+    // firebase e verileri gönderiyoruz
+    await setDoc(doc(db, "cities", "LA"), {
+      name: "Los Angeles",
+      state: "CA",
+      country: "USA",
+    });
   };
 
   return (
