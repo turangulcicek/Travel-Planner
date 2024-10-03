@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
-import CustomButton from "../../components/CustomButton";
 import { useNavigation } from "expo-router";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { CreateTripContext } from "../../context/CreateTripContext";

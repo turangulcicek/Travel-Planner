@@ -17,7 +17,6 @@ export default function ReviewTrip() {
       headerShown: true,
       headerTransparent: true,
     });
-    console.log(TripData);
   }, []);
 
   return (
@@ -125,7 +124,7 @@ export default function ReviewTrip() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 70,
+    paddingTop: 0,
     paddingHorizontal: 40,
   },
   title: {
