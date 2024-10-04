@@ -5,11 +5,12 @@ import { AI_PROMPT } from "../../constants/Options";
 import { chatSession } from "../../configs/AiModal";
 import { useRouter } from "expo-router";
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../configs/FirebaseConfig";
+import { auth, db } from "../../configs/FirebaseConfig";
 
 export default function GenerateTrip() {
   const { TripData, setTripData } = useContext(CreateTripContext);
   const [isLoading, setIsLoading] = useState(false);
+  const user = auth.currentUser;
   const router = useRouter();
   useEffect(() => {
     TripData && GenerateAiTrip();
@@ -27,16 +28,20 @@ export default function GenerateTrip() {
       .replace("{budget}", TripData?.budget)
       .replace("{totalDays}", TripData?.totalDays)
       .replace("{totalNight}", TripData?.totalDays - 1);
-    // const result = await chatSession.sendMessage(FINAL_PROMPT);
-    // console.log(result.response.text());
+
+    const result = await chatSession.sendMessage(FINAL_PROMPT);
+
+    const tripResponse = JSON.parse(result?.response?.text());
+    console.log(tripResonse);
     setIsLoading(false);
-    // router.push("(tabs)/mytrip");
     // firebase e verileri gönderiyoruz
-    await setDoc(doc(db, "cities", "LA"), {
-      name: "Los Angeles",
-      state: "CA",
-      country: "USA",
+    // id vermek için new Date kullanıldı
+    const tripId = new Date().getTime().toString();
+    const firebaseResult = await setDoc(doc(db, "UserTrips", tripId), {
+      userEmail: user?.email,
+      tripData: tripResponse,
     });
+    router.push("(tabs)/mytrip");
   };
 
   return (
