@@ -13,8 +13,8 @@ export default function GenerateTrip() {
   const user = auth.currentUser;
   const router = useRouter();
   useEffect(() => {
-    TripData && GenerateAiTrip();
-  }, [TripData]);
+    GenerateAiTrip();
+  }, []);
 
   const GenerateAiTrip = async () => {
     setIsLoading(true);
@@ -30,16 +30,17 @@ export default function GenerateTrip() {
       .replace("{totalNight}", TripData?.totalDays - 1);
 
     const result = await chatSession.sendMessage(FINAL_PROMPT);
-
     const tripResponse = JSON.parse(result?.response?.text());
-    console.log(tripResonse);
+
     setIsLoading(false);
     // firebase e verileri gönderiyoruz
-    // id vermek için new Date kullanıldı
-    const tripId = new Date().getTime().toString();
+    // id vermek için Date.now kullanıldı
+    const tripId = Date.now().toString();
     const firebaseResult = await setDoc(doc(db, "UserTrips", tripId), {
       userEmail: user?.email,
-      tripData: tripResponse,
+      tripPLan: tripResponse /* AI result */,
+      tripData: JSON.stringify(TripData) /* User selection data */,
+      docID: tripId,
     });
     router.push("(tabs)/mytrip");
   };
