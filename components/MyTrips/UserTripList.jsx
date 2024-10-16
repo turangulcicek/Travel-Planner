@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-export default function UserTripList() {
+export default function UserTripList({ userTrips }) {
   return (
     <View>
       <Text>UserTripList</Text>
