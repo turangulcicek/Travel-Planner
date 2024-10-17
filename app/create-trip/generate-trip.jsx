@@ -39,8 +39,8 @@ export default function GenerateTrip() {
     const firebaseResult = await setDoc(doc(db, "UserTrips", tripId), {
       userEmail: user?.email,
       tripPLan: tripResponse /* AI result */,
-      tripData: JSON.stringify(TripData) /* User selection data */,
-      docID: tripId,
+      tripData: JSON.stringify(TripData),
+      /* User selection data */ docID: tripId,
     });
     router.push("(tabs)/mytrip");
   };
