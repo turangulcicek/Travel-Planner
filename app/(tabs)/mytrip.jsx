@@ -30,7 +30,7 @@ export default function Mytrip() {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+
       setuserTrips([...userTrips, doc.data()]);
     });
     setLoading(false);
@@ -52,7 +52,11 @@ export default function Mytrip() {
         </Pressable>
       </View>
       {loading && <ActivityIndicator size={"large"} color={"black"} />}
-      {userTrips?.length === 0 ? <StartNewTripCard /> : <UserTripList />}
+      {userTrips?.length === 0 ? (
+        <StartNewTripCard />
+      ) : (
+        <UserTripList userTrips={userTrips} />
+      )}
     </View>
   );
 }
