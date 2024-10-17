@@ -4,6 +4,7 @@ import {
   View,
   Pressable,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -22,7 +23,6 @@ export default function Mytrip() {
   const user = auth.currentUser;
   const GetMyTrips = async () => {
     setLoading(true);
-    setuserTrips([]);
     const q = query(
       collection(db, "UserTrips"),
       where("userEmail", "==", user?.email)
@@ -30,7 +30,7 @@ export default function Mytrip() {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-
+      // console.log(doc.id, " => ", doc.data());
       setuserTrips([...userTrips, doc.data()]);
     });
     setLoading(false);
@@ -41,7 +41,7 @@ export default function Mytrip() {
     router.push("create-trip/search-place");
   };
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.innerContainer}>
         <Text style={styles.text}>Mytrips</Text>
         <Pressable
@@ -57,7 +57,7 @@ export default function Mytrip() {
       ) : (
         <UserTripList userTrips={userTrips} />
       )}
-    </View>
+    </ScrollView>
   );
 }
 

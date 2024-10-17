@@ -4,6 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import CustomButton from "../CustomButton";
 import { router, useRouter } from "expo-router";
 
+
 export default function StartNewTripCard() {
   const router = useRouter();
   const handleClick = () => {
@@ -16,6 +17,7 @@ export default function StartNewTripCard() {
       <Text style={styles.text}>
         Looks like its time to plan a new travel experience! Get Started below
       </Text>
+
       <CustomButton color="black" handlePress={handleClick} setWidth={400}>
         Start a new trip
       </CustomButton>

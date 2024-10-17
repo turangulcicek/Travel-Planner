@@ -17,7 +17,7 @@ export default function CustomButton({
           backgroundColor: color,
           width: setWidth,
           paddingHorizontal: 10,
-          paddingVertical: 20,
+          paddingVertical: 15,
           borderRadius: 10,
         }}
       >
