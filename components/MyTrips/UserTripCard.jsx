@@ -3,7 +3,7 @@ import React from "react";
 import moment from "moment";
 
 export default function UserTripCard({ trip, tripObject }) {
-  console.log(tripObject);
+  // console.log(tripObject);
 
   return (
     <View
@@ -16,7 +16,13 @@ export default function UserTripCard({ trip, tripObject }) {
       }}
     >
       <Image
-        source={require("./../../assets/images/couple.png")}
+        source={{
+          uri:
+            "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=" +
+            tripObject?.locationInfo?.photo_reference +
+            "&key=" +
+            process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
+        }}
         style={{ width: 100, height: 100, borderRadius: 15 }}
       />
       <View>

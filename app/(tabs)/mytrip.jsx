@@ -22,7 +22,9 @@ export default function Mytrip() {
   }, [user]);
   const user = auth.currentUser;
   const GetMyTrips = async () => {
+    setuserTrips([]);
     setLoading(true);
+
     const q = query(
       collection(db, "UserTrips"),
       where("userEmail", "==", user?.email)
