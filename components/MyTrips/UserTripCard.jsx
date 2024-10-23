@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import moment from "moment";
 
-export default function UserTripCard({ trip, tripObject }) {
-  console.log(tripObject);
-
+export default function UserTripCard({ trip }) {
+  const newTrip = JSON.parse(trip.tripData);
   return (
     <View
       style={{
@@ -16,18 +15,25 @@ export default function UserTripCard({ trip, tripObject }) {
       }}
     >
       <Image
-        source={require("./../../assets/images/couple.png")}
+        source={{
+          uri:
+            "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=" +
+            newTrip?.locationInfo?.photo_reference +
+            "&key=" +
+            process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
+        }}
         style={{ width: 100, height: 100, borderRadius: 15 }}
       />
       <View>
         <Text style={styles.text}>
-          Destination:{tripObject?.locationInfo?.name}
+          Destination:{newTrip?.locationInfo?.name}
         </Text>
         <Text style={styles.text}>
           Start Date:
-          {moment(tripObject?.startDate).format("DD MMM YYYY")}
+          {moment(newTrip?.startDate).format("DD MMM YYYY")}
         </Text>
-        <Text style={styles.text}>Traveler:{tripObject.travelerCount}</Text>
+        <Text style={styles.text}>Traveler:{newTrip.travelerCount}</Text>
+        <Text style={styles.text}>Budget:{newTrip.budget}</Text>
       </View>
     </View>
   );
