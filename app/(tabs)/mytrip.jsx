@@ -41,7 +41,7 @@ export default function Mytrip() {
     router.push("create-trip/search-place");
   };
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.innerContainer}>
         <Text style={styles.text}>Mytrips</Text>
         <Pressable
@@ -57,7 +57,7 @@ export default function Mytrip() {
       ) : (
         <UserTripList userTrips={userTrips} />
       )}
-    </ScrollView>
+    </View>
   );
 }
 

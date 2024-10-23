@@ -7,7 +7,6 @@ export default function UserTripList({ userTrips }) {
   // console.log(userTrips[0].tripData);
   let tripData = userTrips[0].tripData;
   let tripObject = JSON.parse(tripData);
-  console.log(tripObject);
 
   return (
     <View>
