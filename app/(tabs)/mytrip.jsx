@@ -24,18 +24,21 @@ export default function Mytrip() {
   }, [user]);
   const GetMyTrips = async () => {
     setLoading(true);
-    setuserTrips([]);
+    setuserTrips([]); // Clear existing trips
     const q = query(
       collection(db, "UserTrips"),
       where("userEmail", "==", user?.email)
     );
     const querySnapshot = await getDocs(q);
+
+    // Use a temporary array to accumulate the trips
+    const trips = [];
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      setuserTrips([...userTrips, doc.data()]);
-      console.log(userTrips);
+      trips.push(doc.data());
     });
 
+    // Update the state with the accumulated trips
+    setuserTrips(trips);
     setLoading(false);
   };
 
@@ -44,7 +47,7 @@ export default function Mytrip() {
     router.push("create-trip/search-place");
   };
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.innerContainer}>
         <Text style={styles.text}>Mytrips</Text>
         <Pressable
@@ -60,7 +63,7 @@ export default function Mytrip() {
       ) : (
         <UserTripList userTrips={userTrips} />
       )}
-    </ScrollView>
+    </View>
   );
 }
 

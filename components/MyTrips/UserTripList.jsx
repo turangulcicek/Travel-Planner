@@ -6,7 +6,7 @@ import UserTripCard from "./UserTripCard";
 export default function UserTripList({ userTrips }) {
   let tripData = userTrips[0].tripData;
   let tripObject = JSON.parse(tripData);
-  console.log(tripObject);
+  console.log(userTrips);
   // console.log(tripObject.locationInfo.photo_reference);
 
   return (
@@ -58,9 +58,13 @@ export default function UserTripList({ userTrips }) {
       <CustomButton color="gray" setWidth="100%">
         See Your Plan
       </CustomButton>
-      {userTrips.map((item, index) => (
-        <UserTripCard trip={item} key={index} tripObject={tripObject} />
-      ))}
+      <FlatList
+        data={userTrips}
+        renderItem={({ item, index }) => (
+          <UserTripCard trip={item} key={index} tripObject={tripObject} />
+        )}
+      />
+      {/* // */}
     </View>
   );
 }

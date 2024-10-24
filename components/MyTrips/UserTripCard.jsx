@@ -32,7 +32,7 @@ export default function UserTripCard({ trip }) {
           Start Date:
           {moment(newTrip?.startDate).format("DD MMM YYYY")}
         </Text>
-        <Text style={styles.text}>Traveler:{newTrip.travelerCount}</Text>
+        <Text style={styles.text}>Travelers:{newTrip.travelerCount}</Text>
         <Text style={styles.text}>Budget:{newTrip.budget}</Text>
       </View>
     </View>
