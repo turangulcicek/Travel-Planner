@@ -61,7 +61,12 @@ export default function UserTripList({ userTrips }) {
       <FlatList
         data={userTrips}
         renderItem={({ item, index }) => (
-          <UserTripCard trip={item} key={index} tripObject={tripObject} />
+          <UserTripCard
+            trip={item}
+            key={index}
+            tripObject={tripObject}
+            style={{ marginVertical: 10 }}
+          />
         )}
       />
       {/* // */}
