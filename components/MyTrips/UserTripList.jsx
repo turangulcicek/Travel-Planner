@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View, Image, FlatList } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import moment from "moment";
 import CustomButton from "../CustomButton";
 import UserTripCard from "./UserTripCard";
+import { useRouter } from "expo-router";
 export default function UserTripList({ userTrips }) {
   let tripData = userTrips[0].tripData;
   let tripObject = JSON.parse(tripData);
-  console.log(userTrips);
+  const router = useRouter();
   // console.log(tripObject.locationInfo.photo_reference);
 
   return (
@@ -55,7 +56,18 @@ export default function UserTripList({ userTrips }) {
         </Text>
         <Text style={styles.text}>{tripObject?.travelerCount}</Text>
       </View>
-      <CustomButton color="gray" setWidth="100%">
+      <CustomButton
+        color="gray"
+        setWidth="100%"
+        handlePress={() => {
+          router.push({
+            pathname: "/trip-details",
+            params: {
+              trip: JSON.stringify(userTrips[0]),
+            },
+          });
+        }}
+      >
         See Your Plan
       </CustomButton>
       <FlatList

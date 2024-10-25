@@ -34,7 +34,7 @@ export default function Mytrip() {
     // Use a temporary array to accumulate the trips
     const trips = [];
     querySnapshot.forEach((doc) => {
-      trips.push(doc.data());
+      trips.unshift(doc.data());
     });
 
     // Update the state with the accumulated trips
