@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import moment from "moment";
+import FlightInfo from "../../components/TripDetails/FlightInfo";
 export default function TripDetails() {
   const navigation = useNavigation();
   const [tripdetails, setTripDetails] = useState();
@@ -17,8 +18,7 @@ export default function TripDetails() {
     });
     setTripDetails(JSON.parse(trip));
 
-    console.log(tripdetails);
-  }, []);
+ }, []);
 
   return (
     tripdetails && (
@@ -64,7 +64,19 @@ export default function TripDetails() {
               To {moment(tripdetails?.endDate).format("DD MMM YYYY")}
             </Text>
           </View>
+          <Text style={styles.text}>Travelers:{formatData(tripdetails?.tripData).travelerCount}</Text>
+           {/* Flight ınfo  */}
+          <FlightInfo flightData={tripdetails?.tripPLan?.flight}/>
+
         </View>
+       
+       
+
+        <View>
+
+        </View>
+        {/* Hotels list */}
+        {/* Trip Day Planner */}
       </View>
     )
   );
