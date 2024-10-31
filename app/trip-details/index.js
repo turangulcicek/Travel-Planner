@@ -4,6 +4,7 @@ import { useLocalSearchParams, useNavigation } from "expo-router";
 import moment from "moment";
 import FlightInfo from "../../components/TripDetails/FlightInfo";
 import HotelsList from "../../components/TripDetails/HotelsList";
+import PlannedTrip from "../../components/TripDetails/PlannedTrip";
 
 export default function TripDetails() {
   const navigation = useNavigation();
@@ -24,7 +25,7 @@ export default function TripDetails() {
 
   return (
     tripdetails && (
-      <View>
+      <ScrollView>
         <Image
           source={{
             uri:
@@ -35,7 +36,7 @@ export default function TripDetails() {
           }}
           style={{
             width: "100%",
-            height: 200,
+            height: 150,
           }}
         />
         <View
@@ -72,12 +73,13 @@ export default function TripDetails() {
           </Text>
           {/* Flight ınfo  */}
           <FlightInfo flightData={tripdetails?.tripPLan?.flight} />
-          <HotelsList hotelsInfo={tripdetails?.tripPLan?.hotels} />
           {/* Hotels list */}
-        </View>
 
-        {/* Trip Day Planner */}
-      </View>
+          <HotelsList hotelsInfo={tripdetails?.tripPLan?.hotels} />
+          {/* Trip Day Planner */}
+          <PlannedTrip details={tripdetails?.tripPLan?.itinerary} />
+        </View>
+      </ScrollView>
     )
   );
 }

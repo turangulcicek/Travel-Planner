@@ -12,7 +12,7 @@ export default function HotelsList({ hotelsInfo }) {
   return (
     <View
       style={{
-        backgroundColor: "lightblue",
+        backgroundColor: "white",
         padding: 5,
         borderRadius: 10,
         gap: 5,
@@ -36,12 +36,32 @@ export default function HotelsList({ hotelsInfo }) {
         horizontal={true}
         data={hotelsInfo}
         renderItem={({ item, index }) => (
-          <View style={{ borderWidth: 1 }}>
+          <View
+            style={{
+              marginRight: 10,
+              borderRadius: 10,
+              padding: 5,
+              backgroundColor: "white",
+              borderWidth: 1,
+            }}
+          >
             <Image
-              source={require("../../assets/images/couple.png")}
-              style={{ width: 50, height: 50, objectFit: "contain" }}
+              source={require("../../assets/images/login.png")}
+              style={{ width: 180, height: 120, objectFit: "contain" }}
             />
-            <Text>{item.name}</Text>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <Text
+                style={{
+                  fontFamily: "outfit-bold",
+
+                  fontSize: 15,
+                }}
+              >
+                {item.name}
+              </Text>
+              <Text>⭐{item.rating}</Text>
+              <Text>💲{item.price}</Text>
+            </View>
           </View>
         )}
       />
