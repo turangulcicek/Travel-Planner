@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import moment from "moment";
 import FlightInfo from "../../components/TripDetails/FlightInfo";
+import HotelsList from "../../components/TripDetails/HotelsList";
+
 export default function TripDetails() {
   const navigation = useNavigation();
   const [tripdetails, setTripDetails] = useState();
@@ -16,9 +18,9 @@ export default function TripDetails() {
       headerTransparent: true,
       headerTitle: "",
     });
-    setTripDetails(JSON.parse(trip));
 
- }, []);
+    setTripDetails(JSON.parse(trip));
+  }, []);
 
   return (
     tripdetails && (
@@ -33,7 +35,7 @@ export default function TripDetails() {
           }}
           style={{
             width: "100%",
-            height: 300,
+            height: 200,
           }}
         />
         <View
@@ -44,6 +46,7 @@ export default function TripDetails() {
             marginTop: -20,
             borderTopLeftRadius: 15,
             borderTopRightRadius: 15,
+            gap: 10,
           }}
         >
           <Text style={{ fontSize: 20, fontFamily: "outfit-bold" }}>
@@ -64,22 +67,24 @@ export default function TripDetails() {
               To {moment(tripdetails?.endDate).format("DD MMM YYYY")}
             </Text>
           </View>
-          <Text style={styles.text}>Travelers:{formatData(tripdetails?.tripData).travelerCount}</Text>
-           {/* Flight ınfo  */}
-          <FlightInfo flightData={tripdetails?.tripPLan?.flight}/>
-
+          <Text style={styles.text}>
+            Travelers:{formatData(tripdetails?.tripData).travelerCount}
+          </Text>
+          {/* Flight ınfo  */}
+          <FlightInfo flightData={tripdetails?.tripPLan?.flight} />
+          <HotelsList hotelsInfo={tripdetails?.tripPLan?.hotels} />
+          {/* Hotels list */}
         </View>
-       
-       
 
-        <View>
-
-        </View>
-        {/* Hotels list */}
         {/* Trip Day Planner */}
       </View>
     )
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  text: {
+    fontFamily: "outfit",
+    color: "gray",
+  },
+});
