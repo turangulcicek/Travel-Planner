@@ -2,9 +2,9 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
+import PlaceCard from "./PlaceCard";
 
 export default function PlannedTrip({ details }) {
-  const router = useRouter();
 
   return (
     <View style={{ marginTop: 10 }}>
@@ -18,84 +18,7 @@ export default function PlannedTrip({ details }) {
           return lastCharA.localeCompare(lastCharB); // Sort by last character
         })
         .map(([day, details]) => (
-          <View
-            style={{
-              backgroundColor: "lightblue",
-              padding: 10,
-              marginBottom: 5,
-              borderRadius: 10,
-            }}
-            key={day} // Adding a key for unique identification in the list
-          >
-            <Text
-              style={{
-                fontSize: 16,
-                fontFamily: "outfit-bold",
-                marginBottom: 10,
-                backgroundColor: "black",
-                color: "white",
-                width: "30%",
-                padding: 5,
-                borderRadius: 10,
-              }}
-            >
-              📅 {day.charAt(0).toUpperCase() + day.slice(1)}
-            </Text>
-            <Image
-              source={require("./../../assets/images/login.png")}
-              style={{ width: "100%", height: 120 }}
-            />
-            <Text
-              style={{
-                fontFamily: "outfit-bold",
-                fontSize: 16,
-                textAlign: "left",
-                marginTop: 10,
-              }}
-            >
-              {details.location}
-            </Text>
-            <Text style={{ color: "gray" }}>{details.details}</Text>
-            {/* section under the details of the place */}
-            <View>
-              <Text style={styles.text}>
-                🕰️ Time to Travel: {details.time_to_travel}
-              </Text>
-              <Text style={styles.text}>
-                ⌚ Best Time to Travel: {details.time}
-              </Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={styles.text}>
-                  🎫 Ticket Price: {details.ticket_pricing}
-                </Text>
-                <Pressable
-                  onPress={() =>
-                    router.push({
-                      pathname: "/trip-details/location-details",
-                      params: {
-                        tripdetail: details.geo_coordinates,
-                        name: details.location,
-                      },
-                    })
-                  }
-                  style={{
-                    backgroundColor: "black",
-                    padding: 3,
-                    borderRadius: 8,
-                  }}
-                >
-                  <Ionicons name="navigate" size={20} color="white" />
-                </Pressable>
-              </View>
-            </View>
-            {/* end the section */}
-          </View>
+          <PlaceCard day={day} details={details} />
         ))}
     </View>
   );
