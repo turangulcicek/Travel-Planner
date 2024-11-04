@@ -75,7 +75,15 @@ export default function PlannedTrip({ details }) {
                   🎫 Ticket Price: {details.ticket_pricing}
                 </Text>
                 <Pressable
-                  onPress={() => router.push("/trip-details/location-details")}
+                  onPress={() =>
+                    router.push({
+                      pathname: "/trip-details/location-details",
+                      params: {
+                        tripdetail: details.geo_coordinates,
+                        name: details.location,
+                      },
+                    })
+                  }
                   style={{
                     backgroundColor: "black",
                     padding: 3,

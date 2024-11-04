@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import Fontisto from "@expo/vector-icons/Fontisto";
 export default function HotelsList({ hotelsInfo }) {
-  console.log(hotelsInfo);
   return (
     <View
       style={{
