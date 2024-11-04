@@ -1,6 +1,16 @@
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import * as Linking from "expo-linking";
+
 const FlightInfo = ({ flightData }) => {
+  // console.log(flightData.booking_url);
+
+  const handlePress = () => {
+    const url = flightData.booking_url;
+    Linking.openURL(url).catch((err) =>
+      console.error("Failed to open URL:", err)
+    );
+  };
   return (
     <View
       style={{
@@ -46,6 +56,7 @@ const FlightInfo = ({ flightData }) => {
             borderRadius: 5,
             width: "30%",
           }}
+          onPress={handlePress}
         >
           <Text style={{ textAlign: "center", color: "white" }}>Book Here</Text>
         </Pressable>
